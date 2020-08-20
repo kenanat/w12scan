@@ -1,4 +1,4 @@
-FROM alpine:edge
+FROM alpine:3.7
 MAINTAINER w8ay@qq.com
 
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories
@@ -8,6 +8,7 @@ RUN set -x \
     && apk add bash \
     && apk add tzdata \
     && apk add gcc \
+    && apk add gettext \
     && apk add libc-dev \
     && apk add linux-headers \
     && apk add nginx \

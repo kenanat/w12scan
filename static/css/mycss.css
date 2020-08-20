@@ -250,3 +250,9 @@
     cursor:pointer;
     margin-left: 1px;
 }
+.navbar-nav .nav-item a:hover{
+    color:black;
+}
+.show-list .list-item .badge{
+    margin-bottom: .25rem;
+}

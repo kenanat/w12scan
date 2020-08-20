@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load versiontag %}
 <!DOCTYPE html>
 <html>
@@ -5,7 +6,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>{% block title %}W12SCAN 网络资产发现引擎{% endblock %}</title>
+    <title>{% trans "W12Scan Search Engine For Cybersecurity" %}</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="/static/vendors/iconfonts/simple-line-icon/css/simple-line-icons.css">
     <link rel="stylesheet" href="/static/vendors/iconfonts/flag-icon-css/css/flag-icon.min.css">
@@ -23,6 +24,8 @@
 </head>
 
 <body>
+    {% get_current_language as LANGUAGE_CODE %}
+
 <div class="container-scroller">
     <!-- partial:../../partials/_horizontal-navbar.html -->
     <nav class="navbar horizontal-layout col-lg-12 col-12 p-0">
@@ -44,6 +47,30 @@
                 <div class="navbar-menu-wrapper d-flex align-items-center justify-content-between flex-grow-1">
 
                     <ul class="navbar-nav navbar-nav-right mr-0 ml-auto">
+                        <li class="nav-item ">
+                            <span><a href="{% url 'language' 'zh-Hans' %}"><i class="flag-icon flag-icon-cn" title="cn" id="cn"></i></a></span>
+                            <span><a href="{% url 'language' %}"><i class="flag-icon flag-icon-us" title="us" id="us"></i></a></span>
+                        </li>
+                        <li class="nav-item nav-profile dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown"
+                               aria-expanded="false">
+                                <span><i class="icon-user"></i></span>
+
+                                <span class="nav-profile-name">{{ request.session.userinfo.username }}</span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
+                                 aria-labelledby="profileDropdown">
+                                <a class="dropdown-item" href="{% url 'setting' %}">
+                                    <i class="icon-settings text-primary mr-2"></i>
+                                    Settings
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{% url 'logout' %}">
+                                    <i class="icon-logout text-primary mr-2"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
 
                     </ul>
                     <button class="navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -68,7 +95,7 @@
                                 class="menu-arrow"></i></a>
                         <div class="submenu">
                             <ul class="submenu-item">
-                                <li class="nav-item"><a class="nav-link" href="{% url 'faq' %}">搜索语法</a>
+                                <li class="nav-item"><a class="nav-link" href="{% url 'faq' %}">{% trans "Search Syntax" %}</a>
                                 </li>
                                 <li class="nav-item"><a class="nav-link" href="https://github.com/boy-hack/w12scan"
                                                         target="_blank">Github</a></li>
@@ -85,7 +112,7 @@
         <div class="main-panel">
             <div class="content-wrapper">
                 {% block content %}
-                    <div>这里是默认内容，所有继承自这个模板的，如果不覆盖就显示这里的默认内容。</div>{% endblock %}
+                    <div></div>{% endblock %}
             </div>
             <!-- content-wrapper ends -->
             <!-- partial:../../partials/_footer.html -->
